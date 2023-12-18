@@ -2,23 +2,20 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>sp01_di</groupId>
-	<artifactId>sp01_di</artifactId>
+	<groupId>sp03_di</groupId>
+	<artifactId>sp03_di</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<properties>
-		<org.springframework-versions>5.1.3.RELEASE</org.springframework-versions>
-	</properties>
 
 	<dependencies>
 		<!-- spring-context -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${org.springframework-versions}</version>
+			<version>5.1.3.RELEASE</version>
 		</dependency>
 
-		<!--lombok -->
+		<!-- lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -28,6 +25,7 @@
 
 
 	</dependencies>
+
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -41,6 +39,7 @@
 			</plugin>
 		</plugins>
 	</build>
+
 
 
 </project>
