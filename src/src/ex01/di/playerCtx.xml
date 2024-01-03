@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- playerCtx.xml -->
+	<context:annotation-config />  <!-- annotaion 기반으로 하겠다 -->
+	
+	<!-- <bean id="player"  class="ex01.di.PlayerImpl"  name="p1, p2"  scope="prototype"/> -->
+	<bean id="player"  class="ex01.di.PlayerImpl"  name="p1, p2" />
+	<bean id="player2"  class="ex01.di.PlayerImpl"/>
+	<bean id="player3"  class="ex01.di.PlayerImpl"/>
+	
+<!-- 	Point pt = new Point();
+	Point pt2 = new Point(); -->
+	
+	<bean id="soccer" class="ex01.di.Soccer" />
+	<bean id="curling" class="ex01.di.Curling" />
+	<bean id="basketBall" class="ex01.di.BasketBall" />
+	
+	
+	<!-- //2. namespace의 속성을 가지고 제어, xmlns:p="http://www.springframework.org/schema/p"
+	<bean id="soccer" class="ex01.di.Soccer" p:player-ref="player" />
+	<bean id="curling" class="ex01.di.Curling" p:player-ref="player" />
+	<bean id="basketBall" class="ex01.di.BasketBall" p:player-ref="player" />
+ 	-->
+	
+	<!-- //1, 앨리먼트로 제어 setter method <property> , 생성자함수 <constroctor-arg>
+	<bean id="soccer" class="ex01.di.Soccer">
+		<property name="player" ref="player" />
+	</bean>
+	<bean id="curling" class="ex01.di.Curling">
+		<property name="player" ref="player" />
+	</bean>
+	
+	<bean id="basketBall" class="ex01.di.BasketBall">
+		<property name="player" ref="player" />
+	</bean> -->
+</beans>
