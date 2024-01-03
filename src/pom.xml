@@ -2,17 +2,29 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>sp03_annotation</groupId>
-	<artifactId>sp03_annotation</artifactId>
+	<groupId>sp04_aop</groupId>
+	<artifactId>sp04_aop</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<org.springframework-version>5.1.3.RELEASE</org.springframework-version>
+	</properties>
 
 	<dependencies>
 		<!-- spring-context -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>5.1.3.RELEASE</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
+
+		<!-- aspectjweaver -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.9.21</version>
+		</dependency>
+
 
 		<!-- lombok -->
 		<dependency>
@@ -21,21 +33,6 @@
 			<version>1.18.30</version>
 			<scope>provided</scope>
 		</dependency>
-
-		<!-- javax.inject -->
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>1</version>
-		</dependency>
-		
-		<!-- javax.annotation-api -->
-		<dependency>
-			<groupId>javax.annotation</groupId>
-			<artifactId>javax.annotation-api</artifactId>
-			<version>1.3.2</version>
-		</dependency>
-
 
 	</dependencies>
 
@@ -51,4 +48,6 @@
 			</plugin>
 		</plugins>
 	</build>
+
+
 </project>
