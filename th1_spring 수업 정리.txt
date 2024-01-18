@@ -1,0 +1,951 @@
+>> day56 - 24/01/18
+
+ > 프로젝트 마무리 할것 - 전체 깃에 올리는거 정리 및 소스 코드 
+
+ > 자바/스프링/자료구조및알고리즘 정리 
+
+
+
+===========================
+>> day55 - 24/01/17
+
+ > MSA 정리 	
+   - 유레카 (eureka) 
+     eureka-server
+     eureka-client
+
+   eureka-server 에 등록
+   eureka-server 복제
+
+ > 2차 프로젝트 마무리 
+
+ > 2차 미니 프로젝트 발표
+
+  발표 순서 : 
+    1팀  >  3팀   > 2팀  > 4팀   > 5팀 
+
+=======================================	
+>> day54 - 24/01/16
+
+ - 도커 허브에 올리기
+ cmd> docker images
+ cmd> docker image tag 6522(이미지id값) happyvirus88/employee-service
+ cmd> docker push happyvirus88/employee-service 
+
+ - image 강제 삭제
+ C:\Users\Playdata>docker rmi -f 6522 71f18
+
+ - 도커 허브에서 이미지 pull 
+ C:\Users\Playdata>docker pull happyvirus88/employee-service
+
+ - github 이용해서 실행하기  : https://github.com/ai-edu-pro/Config-Files
+ 	
+	@Value("${email}")
+	private String email;
+	
+	@GetMapping("/email")
+	public String getEmail() {
+		return email;
+	}
+
+ - 유레카 (eureka)
+ Eureka는 클라우드 환경의 다수의 서비스(예: API 서버)들의 로드 밸런싱 및 장애 조치 목적을 가진 미들웨어서버이다.
+
+
+==============================================
+>> day53 - 24/01/15
+
+ > MSA
+
+  docker 설치
+
+ C:\Users\Playdata>docker container images
+ cmd> docker ps -a
+
+ cmd> docker pull ubuntu
+ C:\Users\Playdata>docker pull docker/whalesay
+ C:\Users\Playdata>docker run docker/whalesay  cowsay 'hello world!'
+
+
+  department-service   8081
+
+  employee-service    8082
+--------------------------------------------
+   controllers
+
+   entities(domain)
+
+   application.properties / application.yml
+
+   repositories(dao)
+
+   services  : interface <---  class : 구현체 CRUD
+
+ 
+ - Dockerfile  파일 만들기
+ FROM openjdk:17-slim
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","./app.jar"]
+
+ - 배포 형태로 빌드 
+  cmd> mvn clean package
+  project name에서 우클릭 > maven build : packag 
+ 
+ - 도커에 이미지 파일 등록 하기.
+  cmd> docker build  -t  employee-service  . 
+ 
+==> 한번에 해결
+ cmd> mvn  package  dockerfile:build
+
+
+ > 프로젝트
+
+================================
+>> day50 - 24/01/11
+
+ > 실습
+
+==================================
+>> day49 - 24/01/10
+
+   > 실습
+
+
+================================
+>> day48 - 24/01/09
+
+  > 실습
+
+  > MSA
+
+  https://github.com/ai-edu-pro/Config-Files
+
+--------------------------------------------------
+config-server     8888
+
+eureka-server     8761
+
+department-service   8081
+
+employee-service    8082
+--------------------------------------------------
+ 
+7. Docker
+ 도커는 컨테이너 기반의 오픈소스 가상화 플랫폼 이다.
+
+===================================
+>> day47 - 24/01/08
+
+  http://naver.me/FrAOfFRk
+
+
+ > MSA
+
+ 1. java 17, JAVA_HOME
+
+2. maven, MAVEN_HOME
+
+3. sts 
+
+4. sts  plug-in web      
+
+5. lombok    
+
+6. MariaDB
+
+   controllers
+
+   entities(domain)
+
+   application.properties / application.yml
+
+   repositories(dao)
+
+   services  : interface <---  class : 구현체 CRUD
+
+
+ useSSL=false : 암호화된 연결이 아닌 일반적인 HTTP 연결을 사용
+
+
+ {
+    "employeeName": "aaa",
+    "salary": 333
+}
+
+
+https://github.com/ai-edu-pro/Config-Files
+
+--------------------------------------------------
+config-server     8888
+
+eureka-server     8761
+
+department-service   8081
+
+employee-service    8082
+--------------------------------------------------
+ 
+7. Docker
+
+================================
+>> day46 - 24/01/05
+
+ > JWT
+
+
+ > 배포  
+ 1) 내부 서버 포함하고 있을 경우
+   jar
+
+   <packaging>jar</packaging>  추가하고
+
+  빌드하고 
+  target 폴더에서 -jar  배포하기
+  cmd> java -jar  sb01-web-0.0.1-SNAPSHOT.jar
+
+ 2) 외부 서버로 실행 시켜야하는 경우 
+    war 
+
+   <packaging>war</packaging>
+
+  빌드하고 
+  target 폴더에서 -jar  배포하기
+  cmd> java -jar  sp01-web-0.0.1-SNAPSHOT.war
+
+
+ > 실습 
+ sb06_en-sbb 소스 파일(Security 적용)을  JWT 추가할것.
+ 참고> sb08, sb09 예제 소스 참고할것!
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error</title>
+</head>
+<body>
+    <h2>An unexpected error occurred</h2>
+    <p>Timestamp: ${timestamp}</p>
+    <p>Status: ${status}</p>
+    <p>Error: ${error}</p>
+    <p>Message: ${message}</p>
+</body>
+</html>
+
+=======================================
+>> day45 - 24/01/04
+
+ > JWT 
+ 
+   http://localhost:8080/api/auth/signup
+  {
+      "username" : "yuna",
+      "password" : "123",
+      "enabled" :  1
+  }
+
+  https://user-images.githubusercontent.com/45007556/104460769-dbeaa780-55f1-11eb-9149-8d54a1c89c9e.png  
+
+ https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+ 서로 다른 도메인에서 리소스를 공유하는 방식
+
+===============================
+>> day44 - 24/01/03
+
+ > naver API 사용 예제 - 검색
+
+ > 카카오 API 이용한 주소검색 기능 만들기 실습
+   OR  구글 지도 맵 띄우기
+
+ > JWT 
+ 
+ https://velog.io/@moduri/JWT-Token-%EC%9D%B8%EC%A6%9D
+ https://velog.io/@wldus9503/JWTJson-Web-Token%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C
+ https://velopert.com/2389
+
+ # JWT 토큰 구조 
+
+- 헤더 (Header) - 토큰 유형 및 토큰을 만드는 데 사용된 알고리즘에 대한 데이터가 여기에 포함됩니다. 
+- 페이로드 (Payload) -  권한 및 만료를 포함하여 사용자에 대한 정보가 여기에 포함됩니다.
+- 서명 (Signature) -  받는 사람이 토큰의 진위를 확인할 수 있도록 확인 데이터가 여기에 포함됩니다. 
+                             이 서명은 일반적으로 해시되어 해킹 및 복제가 어렵습니다.
+
+ # JWT의 장단점
+ JWT에는 많은 이점이 있습니다.
+-크기: 토큰은 작고, 두 객체 간에 매우 빠르게 전달할 수 있습니다.
+-용이성: 토큰은 거의 모든 곳에서 생성할 수 있으며 서버에서 확인할 필요가 없습니다.
+-제어: 다른 사람이 액세스할 수 있는 항목, 해당 권한이 지속되는 기간 및 로그온한 동안 수행할 수 있는 작업을 지정할 수 있습니다.
+
+ 잠재적인 단점도 있습니다.
+-단일 키: JWT는 단일 키에 의존합니다. 해당 키가 손상되면 전체 시스템이 위험에 노출됩니다.
+-복잡성: 이러한 토큰은 이해하기 쉽지 않습니다. 개발자가 암호화 서명 알고리즘에 대한 강력한 지식이 없는 경우 실수로 시스템을 위험에 빠뜨릴 수 있습니다.
+-제한성: 모든 클라이언트에 메시지를 푸시할 수 없으며 서버 측에서 클라이언트를 관리할 수 없습니다.
+
+# 인증 타입
+. Bearer : JWT 혹은 OAuth에 대한 토큰을 사용합니다. (RFC 6750)
+. Basic : 사용자 아이디와 암호를 Base64로 인코딩한 값을 토큰으로 사용합니다. (RFC 7617)
+. Digest : 서버에서 난수 데이터 문자열을 클라이언트에 보냅니다. 클라이언트는 사용자 정보와 nonce를 포함하는 해시값을 사용하여 응답합니다. (RFC 7616)
+. HOBA : 전자 서명 기반 인증방식입니다. (RFC 7486)
+. Mutual : 암호를 이용한 클라이언트-서버 상호 인증입니다.
+
+
+=================================
+>> day43 - 24/01/02
+
+ > ddl-auto 
+  https://colabear754.tistory.com/136
+
+ > spring security API
+  https://spring.io/guides/gs/securing-web/
+
+ > https://url.kr/hw3x1l
+
+ > Spring Security
+
+ 
+============================
+>> day42 - 23/12/29
+
+ 휴강 처리
+
+============================
+>> day41 - 23/12/28
+
+ > jsp/servlet 간략히 및 jstl
+<%   - jsp 시작 태그
+  %>   - jsp 끝 태그
+
+ 
+<%! %>  : 선언문 - 자바 기본 문법 사용, 함수 선언
+<% %>  : 스크립트릿 - 자바 기본 문법 사용
+<%= %>  :  표현식 (출력)
+
+ 1. 스크립트요소 4가지
+(1) 선언문
+     <%!
+           변수 및 메소드를 선언하는 영역
+      %>
+(2)스크립트릿
+     <%
+         코드작성(변수선언, for, while,if등)
+      %>
+(3)표현식
+     <%=변수 또는 메소드%>
+(4)주석
+    i) HTML에서 주석
+       <!-- Fighting <%=name%>-->
+   ii) JSP에서 주석
+       <%-- Fighting<%=name%> --%>
+   iii)스크립트 언어주석
+      <% ........../* 주석*/(여러줄 주석)............%>
+      <% ...........//주석(한줄주석)...........%>
+
+ https://commons.apache.org/
+
+
+ > JPA
+	
+
+ > 연휴 동안 해야할 과제
+  ORM Mapper로 변경해주세요. - MyBatis 적용하라는 말임!
+
+
+==================================
+>> day41 - 23/12/27
+
+ > thymleaf  : https://www.thymeleaf.org
+  https://url.kr/ljaocg
+
+ > jsp/servlet 간략히 및 jstl
+
+> JSP내장객체  
+JSP페이지에서 JSP컨테이너가 제공하는 특별한객체(변수)
+- request : javax.servlet.http.HttpServletReqeuest 
+                   (파라미터를 포함한 요청을 담고 있는 객체)
+- response : javax.servlet.http.HttpServletResponse
+                    (요청에 대한 응답)
+-out : javax.servlet.jsp.JspWriter
+          (페이지의 내용을 담고 있는 출력스트림객체)
+-session :  javax.servlet.http.HttpSession
+              (세션정보를 담고있는 객체)
+-application :javax.servlet.ServletContent
+               (모든페이지가 공유할 데이터를 담고있는 객체)
+-pageContent :javax.servlet.jsp.PageContext
+                         (페이지실행에 필요한 context정보를 담고있는객체)
+-page  :javax.servlet.jsp.HttpJspPage
+              (JSP페이지의 서블릿객체)
+-config  :javax.servlet.ServletConfig
+              (JSP페이지의 서블릿설정 데이타 초기화 정보 객체)
+-exception  :java.lang.Throwable
+                (JSP페이지의 서블릿 실행시 처리하지 못한 예외객체)
+5. scope
+   -객체가 사용될 수 있는 범위(Life cycle)
+     (page   <  request   <  session  <  application )
+
+
+ > JSP[HTML+java] / Servlet[JAVA+html] 기본 문법
+ - servlet page 등록 - 1) web.xml ,   2) annotation
+
+  > servlet page 등록 시켜줘야한다. <---- web.xml  or annotation 으로 설정한다.
+  1) web.xml 에 등록 방법 
+  <servlet>
+  		<servlet-name></servlet-name>
+  		<servlet-class></servlet-class>
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name></servlet-name>
+  		<url-pattern></url-pattern>
+  </servlet-mapping>
+
+  2) annotation  방법
+     @WebServlet("/ServletDate")
+
+ > mybatis & thymleaf 예제
+
+
+
+=====================================
+>> day40 - 23/12/26
+
+ http://192.162.0.48:8080/api/put
+
+ https://devkingdom.tistory.com/105
+ https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven
+
+ > spring boot
+ https://docs.spring.io/spring-boot/docs/3.2.1/api/
+ https://docs.spring.io/spring-boot/docs/3.2.1/reference/html/
+
+  > rest API
+
+  @JsonNaming(value=PropertyNamingStrategy.SnakeCaseStrategy.class)
+
+  @JsonProperty(" ")
+  @JsonProperty("phone_number")
+  @JsonProperty("PINNUMBER")
+
+  - Java 개발자들 일반적으로 카멜 기법 사용   ex) phoneNumber
+  - JSON 형식에서는 대부분 스네이크 형식 사용   ex) phone_number
+
+REST의 장단점
+장점
+
+HTTP 프로토콜의 인프라를 그대로 사용하므로 REST API 사용을 위한 별도의 인프라를 구출할 필요가 없다.
+HTTP 프로토콜의 표준을 최대한 활용하여 여러 추가적인 장점을 함께 가져갈 수 있게 해준다.
+HTTP 표준 프로토콜에 따르는 모든 플랫폼에서 사용이 가능하다.
+Hypermedia API의 기본을 충실히 지키면서 범용성을 보장한다.
+REST API 메시지가 의도하는 바를 명확하게 나타내므로 의도하는 바를 쉽게 파악할 수 있다.
+여러가지 서비스 디자인에서 생길 수 있는 문제를 최소화한다.
+서버와 클라이언트의 역할을 명확하게 분리한다.
+
+단점
+
+표준이 존재하지 않는다.
+HTTP Method 형태가 제한적이다.
+브라우저를 통해 테스트할 일이 많은 서비스라면 쉽게 고칠 수 있는 URL보다 Header 값이 왠지 더 어렵게 느껴진다.
+
+
+참고 사이트 : https://meetup.nhncloud.com/posts/92
+	https://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven
+	https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm
+
+   	https://github.com/public-apis/public-apis
+	https://github.com/dl0312/open-apis-korea
+
+
+
+ > MyBatis  - 설정 파일 : xml file
+ 1) 연결    - ~~.xml : db connection, username/password, mapper path   <-- s/f : xml, s/b 설정파일 
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  //config.xml 파일 DTD 를 위한 코드
+
+ 2) DML 명령 - mapper.xml : select / insert / update / delete,...
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  //mapper.xml 파일 DTD 를 위한 코드
+
+ 3) 매핑메소드 - application : src/~DAO.java ,  web : ~.jsp 파일로 만들 수 있음
+
+ https://mybatis.org/mybatis-3/
+
+  dtd 
+
+ > Thymeleaf : 템플릿 엔진
+ - 템플릿 엔진'의 일종. html 태그에 속성을 추가해 페이지에 동적으로 값을 추가하거나 처리할 수 있다.
+
+-- 템플릿 엔진의 장점
+코드 양 ↓
+재사용성 ↑
+유지보수에 용이
+ 
+
+-- 여러 서버 템플릿 엔진의 특징
+JSP: 스프링 부트에서 비권장
+Velocity: 스프링 부트에서 비권장
+Freemarker: 템플릿 엔진으로서 기능이 너무 다양함. 숙련도 낮은 경우 비즈니스 로직이 추가됨.
+Thymeleaf: 스프링에서 권장. 문법이 어려움.
+Mustache: 심플하고 서버, 클라 모두 사용 가능.
+
+
+# mapper.xml location
+# mybatis.mapper-locations: mybatis/mapper/**/*.xml
+#TestTableMapper.xml 파일이 위치하는 경로
+**은 하위 폴더 레벨에 상관없이 모든 경로를 뜻하며, *는 아무 이름이나 와도 된다는것을 뜻한다.
+
+ > JPA
+
+
+   공공데이터 api key : https://www.data.go.kr
+http://www.foodsafetykorea.go.kr/api/howToUseApi.do?menu_grp=MENU_GRP34&menu_no=687
+
+===============================
+>> day39 - 23/12/22
+
+ > spring boot
+ 
+ > Boot로 웹 페이지 만들기
+
+ > 구글 웹스토어 : Talend
+ https://chrome.google.com/webstore/category/extensions
+ https://chrome.google.com/webstore/detail/talend-api-tester-free-ed/aejoelaoggembcahagimdiliamlcdmfm?page=1&hl=ko
+
+ > RESTfull API
+  RESTful API는 두 컴퓨터 시스템이 인터넷을 통해 정보를 안전하게 
+  교환하기 위해 사용하는 인터페이스입니다
+   - REpresentation State Transfer
+        HTTP 요청 방식 + URL 조합으로 지원 요청
+        HTTP 요청 방식에 따라 수행할 작업을 식별
+        URL은 작업할 데이터를 식별 
+
+HTTP URI(Uniform Resource Identifier)를 통해 자원(Resource)을 명시하고, HTTP Method(POST, GET, PUT, DELETE)를 통해 해당 자원에 대한 CRUD Operation을 적용하는 것을 의미한다.
+
+ - CRUD Operation
+Create : 생성(POST)
+Read : 조회(GET)
+Update : 수정(PUT)
+Delete : 삭제(DELETE)
+HEAD: header 정보 조회(HEAD)
+ 
+   - 규칙
+  https://velog.io/@pjh612/REST-API-URI-%EA%B7%9C%EC%B9%99
+  https://prohannah.tistory.com/156
+  https://restfulapi.net/
+   http://www.incodom.kr/REST
+
+ > 표기법 
+  https://heytech.tistory.com/294
+  파스칼(PascalCase) vs 스네이크(snake_case) vs 카멜(camelCase)
+
+ - 간단 프로그램 작성
+
+ - JSON
+{
+  "key" : "value",
+  "key2" : "value2",
+}
+
+- JS : Object 
+{
+  key : "value",
+  key2 : "value2",
+}
+
+- JSON
+/*
+  	String : valule
+  	number : value
+  	boolean : value
+  	object : value { }
+  	array : value [ ]
+  	
+  	{
+  		"phone_numbe" : "010-9872-0202",    // camelCase, PascalCase, snake_case
+  		"age" : 10,
+  		"isAgree" : false,
+  		"account" : {
+  				"email" : "kingsmile@kosa.or.kr",
+  				"password" : "1234"
+  		}
+  	}
+  	
+  	// user 조회 하는 경우
+  	{
+  		"user_list" : [
+  				{
+  					"account" : "kingsmile",
+  					"password" : "1234"
+  				},
+  				{
+  					"account" : "aaa",
+  					"password" : "1111"
+  				},
+  				{
+  					"account" : "bbb",
+  					"password" : "2222"
+  				},
+  		]
+  	}
+  	
+*/
+
+https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html
+https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.structuring-your-code
+
+//http://fasterxml.github.io/jackson-databind/javadoc/2.13/com/fasterxml/jackson/databind/PropertyNamingStrategy.html
+//https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=countmonte7&logNo=221652834726
+
+
+====================================
+>> day38 - 23/12/21
+
+ 3) 스프링 MVC의 주요 구성 요소
+  DispatcherServlet : 브라우저가 송신한 요청을 일괄 관리한다.
+  HandlerMapping : 웹요청 URL과 컨트롤러 클래스를 맵핑시켜 관리한다.
+  Controller : 비즈니스 로직을 호출하고, 관리 결과인 ModelAndView를 반환한다.
+  ViewResolver : 컨트롤러 클래스가 반환한 뷰 이름으로 이동할 뷰를 결정한다.
+  View : 프리젠테이션 계층으로 출력 데이터를 설정한다.
+
+4) HandlerMapping 인터페이스 구현 클래스
+  - BeanNameUrlHandlerMapping : 스프링 설정 파일에 핸들러 맵핑을 전혀 정의하지 않을때 기본 클래스
+  - SimpleUrlHandlerMapping : 웹 요청 URL과 컨트롤러의 맵핑을 일괄 정의한다. 
+			스프링 설정 파일에 컨트롤러의 정의가 분산되는 것을 방지한다.
+  - ControllerClassNameHandlerMapping : 컨트롤러에 어노테이션을 부여해서 웹 요청 URL과 관련을 정의한다.
+  
+5) ViewResolver 인터페이스 구현
+  - InternalResourceViewResolver : 스프링 설정 파일에 ViewReolver를 전혀 정의하지 않을때의 기본 클래스
+  - ResourceBundleViewResolver : 프로퍼티 파일에서 뷰이름과 그 실체인 뷰를 관련 짓는다. 
+			classes 패스에 위치  .properties 파일들에 대한 처리...
+  - VelocityViewResolver : 벨로시티 템플릿으로 만든 뷰를 해결한다.
+  
+6) View 인터페이스 구현
+  - InternalResourceView : JSP 자원용 뷰. 요청 속성에 모델을 지정하고, 
+		RequestDispatcher 클래스를 참조해서 지정된 뷰에 전달한다.
+  - JstlView : JSTL를 사용한 페이지용 뷰. InternalResourceView 클래스의 서브 클래스.
+  - VelocityView : 벨로시티 템플릿용 뷰
+  - MappingJacksonJsonView : JSON 형식으로 출력하기 위한 뷰. 
+		JSON으로의 변환 라이브러리로서 Jackson(http://jackson.codehaus.org) 
+
+
+
+  > Spring DAO
+
+ SHOW VARIABLES LIKE 'autocommit%';
+ SET autocommit=TRUE;
+
+ - servlet 등록 2가지
+  1) web.xml 
+   <servlet></sevlet>
+   <servlet-mapping> </servlet-mapping>
+----------------------------------------------------------
+ <servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+  2) annotaion 
+
+
+
+    p:defaultAutoCommit="false"
+
+--------------------------------------
+> MariaDB 폴더>data>my.ini 파일 수정 할것!   autocommit=1
+[mysqld]
+datadir=C:/Program Files/MariaDB 10.11/data
+port=3306
+innodb_buffer_pool_size=2013M
+character-set-server=utf8mb4
+autocommit=1
+[client]
+port=3306
+plugin-dir=C:\Program Files\MariaDB 10.11/lib/plugin
+
+
+> 트랜젝션 처리때 사용 하지만, 이렇게해도 해결 됨.
+
+applicationContext.xml 에
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+추가하고
+WriteController.java 에
+@Controller
+@EnableTransactionManagement
+@Transactional
+public class WriteController {	// Controller
+
+==================================
+>> day37 - 23/12/20
+
+ > AOP  p89~
+  - xml
+  - annotaion
+
+  	@Pointcut("execution(public void get*(..))")
+	// @Pointcut("execution(public void get*(..))") // public void인 모든 get메소드
+	// @Pointcut("execution(* ex06.aop.annot.*.*())") // kr.edu.kosa 패키지에 파라미터가 없는 모든 메소드
+	// @Pointcut("execution(* kr.edu.kosa..*.*())") // kr.edu.kosa 패키지 &
+	// kr.edu.kosta 하위 패키지에 파라미터가 없는 모든 메소드
+	// @Pointcut("execution(* kr.edu.kosta.Worker.*())") // kr.edu.kosta.Worker 안의 모든 메소드
+
+	// @Pointcut("within(ex06.aop.annot.*)") //kr.edu.kosa 패키지 안에 있는 모든 메소드
+	// @Pointcut("within(ex06.aop.annot..*)") //kr.edu.kosa 패키지 및 하위 패키지 안에 있는 모든 메소드
+	// @Pointcut("within(ex06.aop.annot.Worker)") //kr.edu.kosa.Worker 모든 메소드
+
+	// @Pointcut("bean(student)") //student 빈에만 적용
+	// @Pointcut("bean(*ker)") //~ker로 끝나는 빈에만 적용
+	// @Pointcut("!bean(student)") // student 빈을 제외한것에 적용
+	// @Pointcut("!bean(worker)")
+	public void pointCutMethod() {  }
+
+ > Spring DAO
+
+
+==================================
+>> day36 - 23/12/19
+
+ DI - 1) xml 기반 설정 
+       2) annotation 설정
+            @Autowired   p74~
+            @Autowired(required=false) 
+            @Qualifier  p77~
+            @Resource p80~
+
+ex) <bean  id="simple" class="a.b.c.SimpleMovieLister">
+	<property name="movieFinder" ref="finder" />
+     </bean>
+
+    <bean  id="finder" class="a.b.c.MovieFinder" />
+------------------------------------------------------------------
+<bean  id="simple" class="a.b.c.SimpleMovieLister">
+	<property name="movieFinder" >
+	       <bean  class="a.b.c.MovieFinder" />
+	</propery>
+ </bean>
+
+---------------------------------------------------------------
+
+ > AOP  p89~
+  - xml
+  - annotaion
+
+  property <list><map><set>......   p53
+
+ > Spring DAO
+
+================================
+>> day35 - 23/12/18
+
+ 
+ > DI (IoC)
+  1. constructor 이용    <constructor-arg>   -- 권장
+  2. setter method 이용 방법  <property>  <--- API에는 대부분 setter method 기반임
+
+  문제] 농구 클래스 만들고, 객체 생성하고, 메인에서 출력하기
+
+ - DI Annotation 
+
+ - 컨테이너
+  BeanFactory  인터페이스 
+  ApplicationContext 
+  AnnotationConfigApplicationContext 
+  AbstractApplicationContext
+  GenericXmlApplicationContext
+  ClassPathXmlApplicationContext
+
+  - DI Annotation 
+  @Configuration: 스프링 설정에 사용되는 클래스임을 명시해주는 어노테이션
+  @Bean : 객체를 생성하는 어노테이션
+
+ - @Scope 
+  https://docs.spring.io/spring/docs/3.0.0.M3/reference/html/ch04s04.html
+
+===================================
+>> day34 - 23/12/15
+
+문제] 해당 인터페이스를 임프리먼츠 하는 클래스 만들기 - 영어인사, 한국어인사
+빈으로 객체 생성하기 - 한국어인사 생성자 이용 , 영어인사 setter method 이용할것 
+
+ > lombok 다운로드 
+ https://projectlombok.org/download
+ -- 어노테이션 기반으로 코드를 자동완성 해주는 라이브러리
+
+  참고> https://congsong.tistory.com/31
+
+ > DI (IoC)
+  1. constructor 이용    <constructor-arg>   -- 권장
+  2. setter method 이용 방법  <property>  <--- API에는 대부분 setter method 기반임
+
+  ## 프레임워크 레벨의 관리를 통해 개발자는 객체들간의 의존성에 신경을 덜 쓰고 Coupling 을 줄일 수 있으며 높은 재사용성과 가독성있는 코드를 만들어낼 수 있다.
+제어의 역전(Inversion Of Control) 이라 하며, 이것이 스프링 프레임워크의 특징적인 개념인 IOC 이다.
+
+(클래스 관리의 주체가 개발자가 아닌 프레임워크라는 뜻이다.)
+결과적으로 이러한 개발 편리성은 높은 생산성을 이끌어낼 수 있는 스프링의 큰 장점이다.
+
+  - DI 정리
+  BeanFactory  인터페이스 
+  ApplicationContext 
+  AnnotationConfigApplicationContext 
+  AbstractApplicationContext
+  GenericXmlApplicationContext
+  ClassPathXmlApplicationContext
+
+
+  - DI Annotation 
+  @Configuration: 스프링 설정에 사용되는 클래스임을 명시해주는 어노테이션
+  @Bean : 객체를 생성하는 어노테이션
+
+ - @Scope 
+  https://docs.spring.io/spring/docs/3.0.0.M3/reference/html/ch04s04.html
+
+## 인텔리제이 쓰는 친구들 xml파일 인식 시키려면
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+
+ <build> 내부에 삽입
+
+
+
+-----------------------
+https://simsim231.tistory.com/162
+https://monsieursongsong.tistory.com/6
+
+==============================
+>> day33 - 23/12/14
+
+ - 처음 만드는 Spring MVC 프로그램으로 구조 파악하기
+
+ - Spring API
+  https://docs.spring.io/spring/docs/5.1.3.RELEASE/javadoc-api/
+
+
+>> Maven 특징
+  http://www.egovframe.go.kr/wiki/doku.php?id=egovframework:dev:dep:build:maven
+
+  http://www.mvnrepository.com/
+  http://search.maven.org/
+
+ https://download.springsource.com/release/STS/3.9.18.RELEASE/dist/e4.21/spring-tool-suite-3.9.18.RELEASE-e4.21.0-win32-x86_64.zip
+
+======================================
+
+ 서블릿 페이지 등록 방법 2가지
+ 1) web.xml  등록
+ 2) annotation 
+
+ -- pom.xml  
+  1) 라이브러리 lib 폴더에 넣는 방법
+  2) 메이븐으로 만들어서 디펜던시 하는 방법 - pom.xml
+
+ java    ex)  Point pt = new Point();  //객체생성, 메모리할당, 생성자함수자동호출
+ spring  ex)  <bean  id="obj"  class="kr.edu.kosa.Point" />
+
+ Maven ? 프로젝트 관리 도구 
+
+ .m2 폴더 : 로컬 저장소 
+
+http://192.168.0.48:8080/encore
+
+>> STS 다운로드  or 전자정부 egov 다운로드
+  https://spring.io/tools
+-------------------------------------------------------------
+  https://marketplace.eclipse.org/content/spring-tools-3-add-spring-tools-4
+-------------------------------------------------------------
+
+ -- 이부분은 이제 지원이 안한다.
+   플러그인 설치(Eclipse>Help>Eclipse Maketplace)
+   Eclipse Enterprise Java and Web Developer Tools 3.20
+   Spring Tools 3 Add-On for Spring Tools 4 3.9.17.RELEASE
+
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+   https://github.com/spring-attic/toolsuite-distribution/wiki/Spring-Tool-Suite-3
+   -- https://download.springsource.com/release/STS/3.9.18.RELEASE/dist/e4.21/spring-tool-suite-3.9.18.RELEASE-e4.21.0-win32-x86_64.zip
+ 	 
+   https://www.egovframe.go.kr/home/sub.do?menuNo=41
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+ >> 이전 버전 다운로드
+   https://kuzuro.blogspot.com/2020/06/sts.html
+   https://github.com/spring-projects/sts4/wiki/Previous-Versions
+
+
+   
+
+>> 용어조사 과제
+
+Framework 	
+bean		
+DI(Dependency Injection(의존성주입)- IoC
+AOP(Aspect Oriented Programming(관점지향프로그래밍)
+POJO			
+proxy  or proxy 우회
+Validation			
+HandlerMapping
+Dispatcher Servlet		
+Spring MVC Life Cycle
+ContextLoaderListener	
+패턴매칭
+
+Join Point		
+Pointcut		
+Aspect		
+Advice		
+Weaving
+
+expression	
+Annotation	
+Repository	
+트랜잭션
+
+전자정부표준 프레임워크(egov)		
+Maven : 프로젝트 관리 도구 
+
+아키텍처(architecture)
+
+
+
+-------유용한 사이트----------------------------------------
+> 동영상 강좌
+- Spring
+https://www.youtube.com/watch?v=CsOrR-4nH-s&list=PLPvokKzUkaLeiLUDKpqRdP8jtLU8lLKgR
+- JSP / Servlet
+https://www.youtube.com/watch?v=MD3YGrofnDY&list=PLieE0qnqO2kTyzAlsvxzoulHVISvO8zA9
+- Java
+https://www.youtube.com/playlist?list=PLOJ3X9PwqLzutXfKwDsDMco_gZZLir_Pj
+
+
+https://github.com/spring-projects/spring-framework
+
+https://www.jetbrains.com/help/idea/nullable-and-notnull-annotations.html
+https://projectlombok.org/features/NonNull
+
+https://www.youtube.com/watch?v=CsOrR-4nH-s&list=PLzXU1vW098TSRZ0oSWqPCVCNeBa4BmCJ8
+
+ http://www.wiz.center/search/spring
+
+>> MyBatis 참고
+http://www.mybatis.org/mybatis-3/ko/getting-started.html
+
+>> Admin LTE
+ https://almsaeedstudio.com/themes/AdminLTE/index2.html
+=====================================
